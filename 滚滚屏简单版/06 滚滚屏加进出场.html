@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="ggp.css" />
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="go.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var nowPage = 0;	//信号量。信号量的合法值0、1、2、3、4
+
+			$(document).mousewheel(function(e,delta){
+				if(!$(".container").is(":animated")){
+					var theOldPage = nowPage;	//将原来的信号量，赶紧备份到theOldPage变量中
+					//往下滚动-1；往上滚动1
+					nowPage = nowPage - delta;	//减号的作用，就是根据实际情况来加减。
+
+					//验收，如果你超过了4，那么我们变为4；再如果你小于了0，那么我们变为0。
+					if(nowPage > 4){
+						nowPage = 4;
+					}else if(nowPage < 0){
+						nowPage = 0;
+					}
+
+					$(".container").animate({"top":nowPage * -100 + "%"},1000);
+					go(nowPage,theOldPage);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="page page0">0</div>
+		<div class="page page1">
+			<div class="w1000 mg0auto por">
+				<img id="duocai" src="images/duocai.png" />
+			</div>
+		</div>
+		<div class="page page2">
+			<div class="w1000 mg0auto por">
+				<img id="lun" src="images/lun.png" />
+			</div>
+		</div>
+		<div class="page page3">3</div>
+		<div class="page page4">4</div>
+	</div>
+</body>
+</html>

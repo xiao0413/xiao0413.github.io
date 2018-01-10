@@ -1,0 +1,86 @@
+/*
+* @Author: dhl
+* @Date:   2017-10-23 14:28:33
+* @Last Modified by:   dhl
+* @Last Modified time: 2017-10-23 15:35:41
+*/
+* {
+	 margin: 0;
+	 padding:0;
+}
+
+
+.player {
+	 width: 672px;
+	 height: 378px;
+	 margin: 50px auto;
+	 background:#000 url("../img/loading.gif") no-repeat center;
+	 position: relative;
+}
+.controls {
+	 width: 100%;
+	 position: absolute;
+	 left: 0px;
+	 bottom: 0px;
+	 background-color: #ffa500;
+	 z-index: 2147483648;
+}
+
+.player .line {
+	 margin-left: 30px;
+	 margin-right: 200px;
+	 background-color: #ccc;
+	 height: 30px;
+	 cursor: pointer;
+}
+
+.press {
+	height: 30px;
+	width: 0px;
+	background-color: #666;
+	z-index: 2147483648;
+
+}
+
+.controls .play {
+	 height: 30px;
+	 width: 30px;
+	 background-color: #ffa500;
+	 position: absolute;
+	 left: 0px;
+	 top:0px;
+	 text-align: center;
+	 line-height: 30px;
+}
+
+.controls .play .play_a {
+	text-decoration: none;
+	color: #fff;
+}
+
+
+.controls .other {
+	 width: 200px;
+	 height: 30px;
+	 position: absolute;
+	 right:0px;
+	 top:0px;
+	 background-color: #ffa500;
+}
+.controls .other  .time {
+	 float: left;
+	 padding-top: 5px;
+	 padding-left:10px;
+}
+.controls .other  .time span {
+	 float: left;
+}
+.controls .other .full {
+	 float: left;
+	 margin-left: 20px;
+	 margin-top: 5px;
+}
+.controls .other .full a {
+	 color: #000;
+	 text-decoration: none;
+}

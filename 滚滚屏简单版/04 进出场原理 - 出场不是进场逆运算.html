@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 900px;
+			height: 400px;
+			border: 1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		div img{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-top: -150px;
+			margin-left: -150px;
+			opacity: 0.1;
+			transition:all 3s ease 0s;
+		}
+		div img.in{
+			/*自己的身上，一旦出现了in这个类名，那么立即执行CSS3的aniamtion*/
+			-webkit-animation:zhuan 2s ease 0s;
+			opacity: 1;
+		}
+		div img.out{
+			opacity: 0.1;
+		}
+
+		@-webkit-keyframes zhuan{
+			from{
+				transform:rotate(0deg);
+			}
+			to{
+				transform:rotate(360deg);
+			}
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//进场按钮，加一个类名
+			$("input:eq(0)").click(function(){
+				$("img").attr("class","in");
+			});
+
+			//退场按钮，删除类名
+			$("input:eq(1)").click(function(){
+			 	$("img").attr("class","out");
+			});
+		});
+	</script>
+</head>
+<body>
+	<input type="button" value="进场" />
+	<input type="button" value="退场" />
+	<div>
+		<img src="images/lun.png" />
+	</div>
+</body>
+</html>

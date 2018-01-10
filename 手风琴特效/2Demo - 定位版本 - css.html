@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    ul {
+      list-style: none
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    div {
+      position: relative;
+      width: 1200px;
+      height: 400px;
+      margin: 50px auto;
+      border: 1px solid red;
+      overflow: hidden;
+    }
+    
+    div li {
+      width: 1200px;
+      height: 400px;
+      /*float: left;*/
+      position: absolute;
+    }
+    
+    div ul {
+      width: 1200px;
+    }
+  </style>
+</head>
+<body>
+<div id="box">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+<script src="animate.js"></script>
+<script>
+  //1 获取元素
+  var box = document.getElementById("box");
+  var list = box.children[0];
+  var lis = list.children;//要操作的
+  
+  //2 遍历
+  for (var i = 0; i < lis.length; i++) {
+    //添加背景图
+    lis[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+    //根据i设置每个li的初始left值
+    lis[i].style.left = i * 240 + "px";
+    
+    //设置移入操作
+    lis[i].index = i;
+    lis[i].onmouseover = function () {
+      //给每个li设置的left根据位置不同，有2组规律
+      //组1：当前元素和前面的元素   i * 100
+      //组2：当前元素后面的元素     i * 100 + 700
+      
+      for (var i = 0; i < lis.length; i++) {
+        if (i <= this.index) {
+          animate(lis[i], "left", i * 100);
+        } else {
+          animate(lis[i], "left", i * 100 + 700);
+        }
+      }
+    };
+    
+    //移出操作
+    lis[i].onmouseout = function () {
+      for (var i = 0; i < lis.length; i++) {
+        animate(lis[i], "left", i * 240);
+      }
+    };
+    
+  }
+
+</script>
+</body>
+</html>

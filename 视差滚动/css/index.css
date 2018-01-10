@@ -1,0 +1,326 @@
+/*
+* @Author: dhl
+* @Date:   2017-10-18 11:24:57
+* @Last Modified by:   dhl
+* @Last Modified time: 2017-10-18 15:05:52
+*/
+body,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,p {
+	 margin:0;
+	 padding:0;
+	 list-style: none;
+	 font-size: 18px;
+	 font-family: "微软雅黑";
+	 color: #000;
+}
+a {
+	text-decoration: none;
+	color: #000;
+}
+/* 导航开始 */
+.nav {
+   height: 150px;
+   background: url("../img/nav_bg.png");
+   position: absolute;
+   width: 100%;
+   left: 0px;
+   top: 0px;
+}
+
+.nav .w {
+	 width: 1080px;
+	 margin: 0 auto;
+}
+
+.l_nav {
+	 float: left;
+}
+
+.l_nav .logo {
+	 width: 93px;
+	 height: 44px;
+	 display: block;
+	 background: url("../img/nav_brand.png") no-repeat;
+	 float: left;
+	 margin-right: 20px;
+	 margin-top: 20px;
+}
+
+.l_nav li,
+.l_nav ul {
+	 float: left;
+}
+.l_nav li a {
+	 height: 75px;
+	 padding: 0 20px;
+	 line-height: 75px;
+	 display: block;
+
+}
+.l_nav li a:hover {
+	 background-color: #12b7f5;
+	 color: #fff;
+	 text-shadow: 0px 0px 5px #000;
+}
+
+.r_nav {
+	 float: right;
+}
+
+.r_nav .regest {
+	 float: left;
+	 width: 96px;
+	 height: 36px;
+	 background-color: #12b7f5;
+	 border-radius: 18px;
+	 margin-top: 20px;
+	 text-align: center;
+	 line-height: 36px;
+	 color: #fff;
+}
+
+.r_nav .other {
+	 float: left;
+}
+.r_nav .other ul {
+	 overflow: hidden;
+}
+.r_nav .other li {
+	 float: right;
+	 padding-top: 20px;
+}
+.r_nav .other li a {
+	 font-size: 14px;
+	 padding: 0 20px;
+}
+.r_nav .other p {
+	 font-size: 14px;
+	 float: right;
+	 padding-right: 20px;
+	 padding-top: 10px;
+}
+
+
+
+/* 宣传部分 */
+.xc {
+	width: 100%;
+	height: 100%;
+	padding-top: 150px;
+	box-sizing: border-box;
+	background: url("../img/banner-bg.jpg") no-repeat top center;
+}
+.xc  img {
+	 display: block;
+	 margin: 20px auto;
+}
+.product {
+	 width: 100%;
+}
+
+/* qq语音部分 */
+.qq_sound {
+	width: 100%;
+}
+.qq_sound .title {
+	 width: 100%;
+	 height: 321px;
+	 background: url("../img/sound-text.png") no-repeat;
+	 text-indent: -2000em;
+}
+
+.qq_sound  .bg {
+	 height: 500px;
+	 background: url("../img/sound-bg.jpg") no-repeat center;
+	 background-size: cover;
+	 background-attachment: fixed;
+}
+
+.qq_sound  .content {
+	  width: 980px;
+	  height: 500px;
+	  margin: 0 auto;
+	  position: relative;
+}
+
+.qq_sound  .content  .phone {
+	 width: 664px;
+	 height: 700px;
+	 background: url("../img/sound-phone.png") no-repeat;
+	 position: absolute;
+	 top: -200px;
+
+}
+
+.qq_sound  .content  .word {
+	 float: right;
+	 width: 500px;
+	 text-align: right;
+	 font-size: 40px;
+}
+
+.qq_sound  .content .p_word {
+	 float: right;
+	 width: 500px;
+	 text-align: right;
+	 margin-top: 40px;
+	 text-shadow: 0px 0px 5px #000;
+
+}
+
+/* 文件 */
+.file {
+	 width: 100%;
+}
+.file .bg {
+	 width: 100%;
+	 height: 500px;
+	 background: url("../img/file-bg.jpg") no-repeat top center;
+	 background-size: cover;
+	 background-attachment: fixed;
+}
+
+.file .content {
+	 width: 980px;
+	 height: 500px;
+	 margin: 0 auto;
+	 position: relative;
+}
+
+.file .content h1 {
+	margin-top: 100px;
+	margin-bottom: 40px;
+	width: 500px;
+	font-size: 40px;
+	float: left;
+	font-weight: normal;
+}
+
+.file .content p {
+	 width: 500px;
+	 float: left;
+	 text-shadow: 0px 0px 5px #999;
+}
+
+.file .content .mac {
+	 width: 597px;
+	 height: 330px;
+	 background: url("../img/file-mac.png") no-repeat;
+	 position: absolute;
+	 right: -100px;
+	 top: 50%;
+	 transform: translateY(-50%);
+}
+
+
+/* 活动 */
+.active {
+	width: 100%;
+}
+
+.active .bg {
+	 width: 100%;
+	 height: 600px;
+	 background: url("../img/interest-bg.jpg") no-repeat top center;
+	 background-size: cover;
+	 background-attachment: fixed;
+}
+
+.active .content {
+	 width: 980px;
+	 height: 500px;
+	 margin: 0 auto;
+	 position: relative;
+}
+
+.active .content .iphone {
+	 width: 344px;
+	 height: 500px;
+	 background: url("../img/interest-phone.png") no-repeat;
+	 position: absolute;
+	 left: 0px;
+	 top: 0px;
+}
+.active .content h1 {
+	 width: 500px;
+	 float: right;
+	 text-align: right;
+	 margin-top: 100px;
+	 font-size: 40px;
+	 font-weight: normal;
+}
+.active .content p {
+	margin-top: 50px;
+	 width: 500px;
+	 float: right;
+	 text-align: right;
+	 text-shadow: 0px 0px 5px #000;
+}
+
+.footer {
+	height: 300px;
+	background-color: #2a2a2a;
+}
+
+.footer .cneter {
+	 width: 980px;
+	 margin: 0 auto;
+	 height: 200px;
+	 display: flex;
+	 justify-content: space-around;
+	 align-items: center;
+}
+.footer .cneter a {
+	 display: block;
+	 padding-top: 50px;
+	 position: relative;
+	 color: #fff;
+}
+.footer .cneter b {
+	 width: 23px;
+	 height: 46px;
+	 background: url("../img/footer.png") no-repeat -25px 0px;
+	 display: block;
+	 position: absolute;
+	 top: 0px;
+	 left: 50%;
+	 transform: translateX(-50%);
+}
+.footer .cneter a:hover {
+	 color: #12b7f5;
+}
+.footer .cneter a:hover b {
+	 background-position: -25px -95px;
+}
+
+.footer .cneter .two b {
+	 width: 48px;
+	 height: 50px;
+	 background-position: -122px 0px;
+}
+.footer .cneter .two:hover b {
+	 background-position: -122px bottom;
+}
+
+
+.footer .cneter .three b {
+	width: 48px;
+	height: 48px;
+	background-position: -233px 0px;
+}
+.footer .cneter .three:hover b {
+	 background-position: -233px bottom;
+}
+
+.footer .cneter .four b {
+	 width: 68px;
+	 height: 48px;
+	 background-position: right 0px;
+}
+.footer .cneter .four:hover b {
+	 background-position: right bottom;
+}
+
+.footer p {
+	 text-align: center;
+	 color: #fff;
+}

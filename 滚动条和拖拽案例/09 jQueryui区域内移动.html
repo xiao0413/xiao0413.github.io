@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			margin: 100px;
+			border: 1px solid #000;
+			width: 300px;
+			height: 300px;
+		}
+		p{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+</head>
+<body>
+	<div>
+		<p></p>
+	</div>
+		
+	<script type="text/javascript">
+		$("p").draggable(
+			{
+				//容器：
+				containment: "parent",
+				//拖拽的时候做的事情
+				drag : function(event,ui){
+					var x = ui.position.left;
+					var y = ui.position.top;
+
+					console.log(x,y);
+				}
+			}
+		);
+	</script>
+</body>
+</html>

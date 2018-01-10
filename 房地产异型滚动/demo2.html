@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.fangdichan{
+			width: 670px;
+			height: 221px;
+			background:url(images/pic_bg.gif) no-repeat;
+			margin: 100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.fangdichan .buttons .leftbut{
+			position: absolute;
+			width: 40px;
+			height: 41px;
+			top: 151px;
+			left: 25px;
+			cursor: pointer;
+		}
+		.fangdichan .buttons .rightbut{
+			position: absolute;
+			width: 40px;
+			height: 41px;
+			top: 151px;
+			right: 25px;
+			cursor: pointer;
+		}
+		.fangdichan .imagelist ul{
+			list-style: none;
+		}
+		.fangdichan .imagelist ul li{
+			position: absolute;
+		}
+		.fangdichan .imagelist ul li img{
+			width: 100%;
+			height: 100%;
+		}
+		.fangdichan .imagelist ul li.no0{width: 54px;height: 29px;left: -69px;top: 95px;}
+		.fangdichan .imagelist ul li.no1{width: 77px;height: 64px;left: 13px;top: 61px;}
+		.fangdichan .imagelist ul li.no2{width: 122px;height: 96px;left: 104px;top: 29px;}
+		.fangdichan .imagelist ul li.no3{width: 158px;height: 113px;left: 247px;top: 15px;}
+		.fangdichan .imagelist ul li.no4{width: 122px;height: 96px;left: 424px;top: 29px;}
+		.fangdichan .imagelist ul li.no5{width: 77px;height: 64px;left: 562px;top: 61px;}
+		.fangdichan .imagelist ul li.no6{width: 54px;height: 29px;left: 678px;top: 95px;}
+		.fangdichan .imagelist ul li.waiting{display: none;}
+
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function(){
+				var json0 = {"width": 54,"height": 29,"left": -69,"top": 95};
+				var json1 = {"width":77,"height":64,"left":13,"top":61};
+				var json2 = {"width":122,"height":96,"left":104,"top":29};
+				var json3 = {"width":158,"height":113,"left":247,"top":15};
+				var json4 = {"width":122,"height":96,"left":424,"top":29};
+				var json5 = {"width":77,"height":64,"left":562,"top":61};
+				var json6 = {"width":54,"height":29,"left":678,"top":95};
+
+				$(".rightbut").click(
+					function(){
+						if(!$(".imagelist ul li").is(":animated")){
+							//【先交换位置】
+							$(".imagelist .no1").animate(json0,300);
+							$(".imagelist .no2").animate(json1,300);
+							$(".imagelist .no3").animate(json2,300);
+							$(".imagelist .no4").animate(json3,300);
+							$(".imagelist .no5").animate(json4,300);
+							$(".imagelist .no6").animate(json5,300);
+							$(".imagelist .no0").css(json6);
+
+							//【再交换身份】
+							//先要备忘一下，原有的no6
+							var myno6 = $(".no6");
+							$(".no0").attr("class","waiting");
+							$(".no1").attr("class","no0");
+							$(".no2").attr("class","no1");
+							$(".no3").attr("class","no2");
+							$(".no4").attr("class","no3");
+							$(".no5").attr("class","no4");
+							$(".no6").attr("class","no5");
+							if(myno6.next().length != 0){
+								//如果myno6后面有人，那么就让这个人的类名为mo6
+								myno6.next().attr("class","no6");
+							}else{
+								$(".imagelist ul li").eq(0).attr("class","no6");
+							}
+
+							$(".no6").css(json6);
+						}
+					}
+				);
+
+				$(".leftbut").click(
+					function(){
+						if(!$(".imagelist ul li").is(":animated")){
+							//【先交换位置】
+							$(".imagelist .no0").animate(json1,300);
+							$(".imagelist .no1").animate(json2,300);
+							$(".imagelist .no2").animate(json3,300);
+							$(".imagelist .no3").animate(json4,300);
+							$(".imagelist .no4").animate(json5,300);
+							$(".imagelist .no5").animate(json6,300);
+							$(".imagelist .no6").css(json0);
+
+							//【再交换身份】
+							//先要备忘一下，原有的no6
+							var myno0 = $(".no0");
+							$(".no6").attr("class","waiting");
+							$(".no5").attr("class","no6");
+							$(".no4").attr("class","no5");
+							$(".no3").attr("class","no4");
+							$(".no2").attr("class","no3");
+							$(".no1").attr("class","no2");
+							$(".no0").attr("class","no1");
+						 	if(myno0.prev().length != 0){
+								//如果myno6后面有人，那么就让这个人的类名为mo6
+								myno0.prev().attr("class","no0");
+							}else{
+								$(".imagelist ul li:last").attr("class","no0");
+							}
+							
+							$(".no0").css(json0);
+						}
+					}
+				);
+			}
+		);
+	</script>
+</head>
+<body>
+	<div class="fangdichan">
+		<div class="buttons">
+			<span class="leftbut"></span>
+			<span class="rightbut"></span>
+		</div>
+		<div class="imagelist">
+			<ul>
+				<li class="no0"><a href="#"><img src="images/0.png" alt="" /></a></li>
+				<li class="no1"><a href="#"><img src="images/1.png" alt="" /></a></li>
+				<li class="no2"><a href="#"><img src="images/2.png" alt="" /></a></li>
+				<li class="no3"><a href="#"><img src="images/3.png" alt="" /></a></li>
+				<li class="no4"><a href="#"><img src="images/4.png" alt="" /></a></li>
+				<li class="no5"><a href="#"><img src="images/5.png" alt="" /></a></li>
+				<li class="no6"><a href="#"><img src="images/6.png" alt="" /></a></li>
+				<li class="waiting"><a href="#"><img src="images/7.png" alt="" /></a></li>
+				<li class="waiting"><a href="#"><img src="images/8.png" alt="" /></a></li>
+				<li class="waiting"><a href="#"><img src="images/9.png" alt="" /></a></li>
+				<li class="waiting"><a href="#"><img src="images/10.png" alt="" /></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

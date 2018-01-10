@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box {
+			 width: 300px;
+			 height: 300px;
+			 border: 1px solid red;
+			 display: table-cell;
+			 vertical-align: middle;
+			 text-align: center;
+		}
+	</style>
+</head>
+<body>
+	
+	 <input type="file">
+	 <div class="box">
+	 	<img src="" alt="">
+	 </div>
+	 
+	 <script type="text/javascript">
+	 	
+	 	 var file_btn=document.querySelector("input");
+	 	 var img=document.querySelector("img");
+
+	 	 	 file_btn.onchange=function(){
+
+	 	 	 	var file=this.files[0];
+
+	 	 	 	var filename=file.name;
+
+	 	 	 	filename=filename.substring(filename.lastIndexOf("."));
+
+	 	 	 	if(filename==".jpg" || filename==".png" || filename==".gif"){
+
+	 	 	 		var reader=new FileReader();
+	 	 	 			reader.readAsDataURL(file);
+	 	 	 			reader.onload=function(){
+	 	 	 				img.src=this.result;
+	 	 	 			}
+	 	 	 	}else{
+	 	 	 		alert("对不起，文件格式不正确");
+	 	 	 	}
+
+
+	 	 	 	
+
+
+
+	 	 	 }
+	 </script>
+</body>
+</html>

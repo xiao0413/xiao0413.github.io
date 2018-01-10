@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html,body{
+			/*高度的100%，指的是父亲，所以这个最大的老祖宗要设置一个100%。*/
+			height: 100%;
+			/*所有的IE都是需要也让html有溢出隐藏的：*/
+			overflow: hidden;
+		}
+		.container{
+			height: 100%;
+			width: 100%;
+			/*translateY要比绝对定位的top，效率高的多的多！*/
+			transform:translateY(0%);
+			/*IE6、7、8、9都不兼容*/
+			transition:all 1s cubic-bezier(0.86, 0, 0.07, 1) 0s;
+		}
+		.container div.page{
+			width: 100%;
+			height: 100%;
+			background-color: pink;
+		}
+		.container div.page0{
+			background-color: pink;
+		}
+		.container div.page1{
+			background-color: orange;
+		}
+		.container div.page2{
+			background-color: blue;
+		}
+		.container div.page3{
+			background-color: green;
+		}
+		.container div.page4{
+			background-color: purple;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="tantiao.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var nowPage = 0;	//信号量。信号量的合法值0、1、2、3、4
+			var lock = true;
+
+			$(document).mousewheel(function(e,delta){
+				if(lock){
+					//往下滚动-1；往上滚动1
+					nowPage = nowPage - delta;	//减号的作用，就是根据实际情况来加减。
+
+					//验收，如果你超过了4，那么我们变为4；再如果你小于了0，那么我们变为0。
+					if(nowPage > 4){
+						nowPage = 4;
+					}else if(nowPage < 0){
+						nowPage = 0;
+					}
+
+					//jQuery只负责css的改变！
+					$(".container").css("transform","translateY(" + nowPage * -100 + "%)");
+
+					//函数节流
+					lock = false;
+
+					//指定秒数后，打开lock
+					setTimeout(function(){
+						lock = true;
+					},1000);
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container showPage0">
+		<div class="page page0">0</div>
+		<div class="page page1">1</div>
+		<div class="page page2">2</div>
+		<div class="page page3">3</div>
+		<div class="page page4">4</div>
+	</div>
+</body>
+</html>

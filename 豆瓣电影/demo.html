@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.movie{
+			width: 610px;
+			height: 350px;
+			border: 1px solid red;
+			margin: 100px auto;
+		}
+		.movie .hd .right{
+			float: right;
+			width: 100px;
+		}
+		.movie .hd .right span{
+			float: left;
+			margin-right: 10px;
+		}
+		.movie .hd .right a{
+			float: left;
+			width: 18px;
+			height: 18px;
+			background: url(images/slide_swithc_2.png) no-repeat;
+			margin-right: 10px;
+		}
+		.movie .hd .right a.rightBtn{
+			background-position: -18px 0;
+		}
+		.movie .bd{
+			clear: both;
+			border-top: 1px solid #ccc;
+			position: relative;
+			overflow: hidden;
+			width: 100%;
+			height: 300px;
+		}
+		.movie .bd .container{
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding-left: 10px;
+			padding-top: 20px;
+		}
+		.movie .bd .container ul{
+			list-style: none;
+			width: 4000px;
+		}
+		.movie .bd .container ul li{
+			float: left;
+			margin-right: 11px;
+		}
+		.movie .bd .container ul li p{
+			text-align: center;
+			line-height: 20px;
+			padding-top: 10px;
+		}
+		.movie .bd .container ul li .goupiao{
+			display: block;
+			width: 120px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			background-color: orange;
+			color:white;
+			border-radius: 4px;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="tantiao.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//计算屏幕数量
+			var screenAmount = $(".container ul li").length / 4;
+
+			$(".right span").html("1/" + screenAmount);
+
+			//复制
+			$(".container ul li:lt(4)").clone().appendTo(".container ul");
+
+			var nowScreen = 0;	//屏幕号，给用户显示的时候，要加1。
+
+			$(".rightBtn").click(rightButFunc);
+
+			function rightButFunc(){
+				if(nowScreen < screenAmount - 1){
+					nowScreen ++ ;
+					normalAnimate();
+				}else{
+					nowScreen = 0;
+					$(".container").animate({"left" : -606 * screenAmount} , 800 ,"tantiao", function(){
+						$(this).css("left",0);
+					});
+				}
+
+				changeSpan();
+			}
+
+			$(".leftBtn").click(function(){
+				 if(nowScreen > 0){
+				 	//正常拉
+				 	nowScreen -- ;
+					normalAnimate();
+				 }else{
+				 	nowScreen = screenAmount - 1;
+				 	//瞬间移动到假的上面，然后拉回2：
+				 	$(".container").css("left" , -606 * screenAmount).animate({"left" : -606 * (screenAmount - 1)},800 ,"tantiao");
+				 }
+
+				changeSpan();
+			});
+
+			function normalAnimate(){
+				$(".container").animate({"left" : -606 * nowScreen} , 800 ,"tantiao");
+			}
+
+			function changeSpan(){
+				//根据信号量改变span中的内容
+				$(".hd .right span").html(nowScreen + 1 + "/" + screenAmount);
+			}
+
+			var timer = setInterval(rightButFunc, 2000);
+
+			$(".movie").mouseenter(function() {
+				clearInterval(timer);
+			});
+
+			$(".movie").mouseleave(function() {
+				timer = setInterval(rightButFunc, 2000);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="movie">
+		<div class="hd">
+			<div class="right">
+				<span>1/3</span>
+				<a class="leftBtn" href="javascript:;"></a>
+				<a class="rightBtn" href="javascript:;"></a>
+			</div>
+		</div>
+		<div class="bd">
+			<div class="container">
+				<ul>
+					<li>
+						<a href="#"><img src="images/1.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/2.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/3.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/4.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/5.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/6.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/7.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/8.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/9.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/10.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/11.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+					<li>
+						<a href="#"><img src="images/12.jpg" alt="" /></a>
+						<p><a href="#">电影标题</a></p>
+						<a href="#" class="goupiao">选座购票</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

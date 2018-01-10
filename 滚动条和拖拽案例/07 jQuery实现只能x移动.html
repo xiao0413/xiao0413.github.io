@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			margin: 100px;
+			width: 600px;
+			height: 40px;
+			border: 1px solid #000;
+			position: relative;
+		}
+		p{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100px;
+			height: 40px;
+			background-color: pink;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+</head>
+<body>
+	<div>
+		<p></p>
+	</div>
+
+	<script type="text/javascript">
+
+		var divLeft = $("div").offset().left;
+		var l = false;
+
+		$("p").mousedown(function(){
+			l = true;
+		})
+
+		//监听p，监听父亲div
+		$("html,body").mousemove(function(event){
+			if(l){
+				//鼠标在整个页面的位置，减去父盒子的left、top
+				var x = event.pageX - divLeft;
+				
+			 	if(x > 550){
+			 		x = 550;
+			 	}else if(x < 50){
+			 		x = 50;
+			 	}
+				//让盒子跟随鼠标：
+				$("p").css({"left" : x - 50});
+			}
+		});
+
+		$("html").mouseup(function(){
+			l = false;
+		})
+	</script>
+</body>
+</html>

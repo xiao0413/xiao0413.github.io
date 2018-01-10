@@ -1,0 +1,16 @@
+/*
+* @Author: dhl
+* @Date:   2017-10-23 17:12:23
+* @Last Modified by:   dhl
+* @Last Modified time: 2017-10-23 17:12:57
+*/
+* {
+	margin:0;
+	padding:0;
+}
+
+html,body {
+	 width: 100%;
+	 height: 100%;
+	 background-color: pink;
+}

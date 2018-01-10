@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .box {
+      width: 322px;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      overflow: hidden;
+    }
+    
+    span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+    }
+    
+    #headPart {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="box" id="box">
+  <!--要操作的关闭按钮-->
+  <span id="closeButton"></span>
+  
+  <div class="hd" id="headPart">
+    <img src="images/t.jpg" alt=""/>
+  </div>
+  <div class="bd" id="bottomPart">
+    <img src="images/b.jpg" alt=""/>
+  </div>
+</div>
+
+<script>
+  //1 获取元素
+  var box = document.getElementById("box");
+  var closeBtn = box.children[0];
+  var hp = box.children[1];//顶部盒子
+  var bp = box.children[2];//低部盒子
+  
+  //2 点击关闭按钮，执行效果
+  closeBtn.onclick = function () {
+    //2.1 底部高度运动为0
+    animate(bp, {height: 0}, function () {
+      //2.2 整体宽度运动为0
+      animate(box, {width: 0}, function () {
+        //2.3 将box移除
+        document.body.removeChild(box);
+      })
+    })
+    
+  };
+  
+  function animate(element, datas, fn) {
+    
+    clearInterval(element.timer);
+    element.timer = setInterval(function () {
+      
+      //1 设置假设条件：假设本轮定时器执行后可以进行清除
+      var flag = true;
+      
+      //先对获取到的数据进行遍历，对每一组数据进行相同操作即可
+      for (var k in datas) {
+        //styleName： 实际上是k
+        //target： 实际上是obj[k]
+        var styleName = k;
+        var target = datas[k];
+        
+        //下面这段代码可以让某一个样式运动到指定的位置
+        var current = parseInt(getStyle(element, styleName)) || 0;
+        var step = (target - current) / 10;
+        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+        current = current + step;
+        element.style[styleName] = current + "px";
+        
+        //此位置原来是书写清除定时器的代码位置，但是某个样式运动完毕并不能进行清除，其他样式可能没到，使用假设成立法解决
+        //2 找到假设失败的条件：如果某个样式运动时没有到达指定位置，阻止清除
+        if (current != target) {
+          flag = false;
+        }
+      }
+      
+      //需要整体检测，只有每个样式都到达了指定位置才可以设置清除
+      //3 验证flag的值
+      if (flag) {
+        clearInterval(element.timer);
+        
+        //当定时器清除之后，表示当前运动执行完毕了。
+        //需求：
+        //1 运动完毕后弹出一个提示框
+        // alert("我执行完毕了");
+        //2 打印一些内容
+        //console.log("今天天气不错");
+        //3 设置一个新的运动
+        //animate(box,{width:130,height:210,top:50});
+        //我们发现，此处需要设置的代码功能不确定，可以让用户在使用时进行传入
+        //fn();
+        //我们发现，fn这个功能表示运动完毕后要执行的代码，但是不是每次运动后都有新功能需要执行
+        //检测fn的类型，如果是函数，才进行调用
+        if (typeof fn == "function") {
+          fn();
+        }
+      }
+      
+    }, 20);
+  }
+  //想要获取任意样式的值，可以使用之前学习过的一个内容
+  function getStyle(element, styleName) {
+    //currentStyle   getComputedStyle
+    if (element.currentStyle) {
+      return element.currentStyle[styleName];
+    } else {
+      return getComputedStyle(element, null)[styleName];
+    }
+  }
+</script>
+</body>
+</html>

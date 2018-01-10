@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			height: 5000px;
+		}
+		.box{
+			width: 500px;
+			height: 200px;
+			border: 1px solid #000;
+			margin: 100px auto;
+			padding-right: 20px;
+			position: relative;
+			overflow: hidden;
+		}
+		.box .inner{
+			width: 500px;
+			background-color: pink;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.box .scrollBox{
+			width: 20px;
+			height: 200px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			background-color: #ccc;
+		}
+		.box .scrollBox span{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 20px;
+			height: 66px;
+			background:-webkit-linear-gradient(left,blue,red);
+			cursor: pointer;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+	<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+</head>
+<body>
+	<div class="box">
+		<div class="inner">
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+			<p>sdafadsf</p>
+		</div>
+		<div class="scrollBox">
+			<span></span>
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		var $scrollBar = $(".scrollBox span");
+		var $neirong = $(".inner");
+
+		//让jQuery自动帮我们算出一些数值
+		var boxHeight = $(".box").height();
+		var neirongHeight = $neirong.height();
+
+		//自动计算滑块应该有的高度
+		var scrollBarHeight = (boxHeight / neirongHeight) * boxHeight;
+		$scrollBar.css("height",scrollBarHeight);
+
+		var nowTop = 0;
+
+		$(".scrollBox span").draggable(
+			{
+				"containment" : "parent" , 
+				"axis" : "y",
+				drag : function(event,ui){
+					//当drag的时候，做什么
+					//滑块位置
+					var scrollBarY = ui.position.top;
+					//数学之美
+					nowTop = - (neirongHeight - boxHeight) * scrollBarY / (boxHeight - scrollBarHeight);
+
+					$(".inner").css("top",nowTop);
+				}
+			}
+		);
+
+		$(".box").mousewheel(function(event,delta){
+			//阻止默认滚动
+			event.preventDefault();
+			//delta表示滚轮方向。往下滚，-1；往上滚是1。
+			nowTop = nowTop + delta * 20;
+			//nowTop永远是负数！！
+			if(nowTop > 0){
+				nowTop = 0;
+			}else if(nowTop < boxHeight - neirongHeight){
+				nowTop = boxHeight - neirongHeight;
+			}
+			//数学之美
+			var scrollBarY = nowTop * (boxHeight - scrollBarHeight) / (neirongHeight - boxHeight);
+			$neirong.css("top",nowTop);
+			$scrollBar.css("top",-scrollBarY);
+		});
+	</script>
+</body>
+</html>

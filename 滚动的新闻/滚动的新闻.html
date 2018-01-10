@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.news{
+			width: 300px;
+			height: 25px;
+			margin: 100px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.news ul{
+			list-style: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.news ul li{
+			line-height: 25px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//复制
+			$(".news ul li:first").clone().appendTo(".news ul");
+
+			var nowrow = 0;	//信号量
+
+			function rightButFunc(){
+				if(nowrow < 3){
+					nowrow ++;
+					$(".news ul").animate({"top" : -25 * nowrow},600);
+				}else{
+					nowrow = 0;
+					$(".news ul").animate({"top" : -25 * 4},600 , function(){
+						$(this).css("top",0);
+					});
+				}
+			}
+
+			var timer = setInterval(rightButFunc, 2000);
+
+			$(".news").mouseenter(function() {
+				clearInterval(timer);
+			});
+
+			$(".news").mouseleave(function() {
+				timer = setInterval(rightButFunc, 2000);
+			});
+		});
+	</script>
+</head>
+<body>
+<h3>每2秒滚动一条新闻</h3>
+	<div class="news">
+		<ul>
+			<li><a href="#">高薪就业！！！！</a></li>
+			<li><a href="#">最高工资20000啊</a></li>
+			<li><a href="#">就业率120%啊</a></li>
+			<li><a href="#">我爱李晨啊</a></li>
+		</ul>
+	</div>
+</body>
+</html>

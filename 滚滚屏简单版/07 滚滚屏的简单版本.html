@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.w1000{
+			width: 1000px;
+			height: 100%;
+		}
+		.mg0auto{
+			margin: 0 auto;
+		}
+		.por{
+			position: relative;
+		}
+		html,body{
+			/*高度的100%，指的是父亲，所以这个最大的老祖宗要设置一个100%。*/
+			height: 100%;
+			/*所有的IE都是需要也让html有溢出隐藏的：*/
+			overflow: hidden;
+		}
+		.container{
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0%;
+			left: 0;
+		}
+		.container div.page{
+			width: 100%;
+			height: 100%;
+			background-color: pink;
+			perspective:500px;
+		}
+		.container div.page0{
+			background-color: pink;
+		}
+		.container div.page1{
+			background-color: #ccc;
+		}
+		.container div.page2{
+			background-color: blue;
+		}
+		.container div.page3{
+			background-color: green;
+		}
+		.container div.page4{
+			background-color: purple;
+		}
+
+		.page1 #duocai{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transition:all 1s ease 0s;
+			margin-left:-80px;
+			margin-top:-150px;
+			/*在没有cur的时候，跑月球上了*/
+			transform:rotateY(-40deg) rotateX(20deg) translateZ(800px);
+		}
+		.page1.cur #duocai{
+			/*有cur的时候，恢复*/
+			transform:none;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var nowPage = 0;	//信号量。信号量的合法值0、1、2、3、4
+
+			$(document).mousewheel(function(e,delta){
+				if(!$(".container").is(":animated")){
+					var theOldPage = nowPage;	//将原来的信号量，赶紧备份到theOldPage变量中
+					//往下滚动-1；往上滚动1
+					nowPage = nowPage - delta;	//减号的作用，就是根据实际情况来加减。
+
+					//验收，如果你超过了4，那么我们变为4；再如果你小于了0，那么我们变为0。
+					if(nowPage > 4){
+						nowPage = 4;
+					}else if(nowPage < 0){
+						nowPage = 0;
+					}
+
+					$(".container").animate({"top":nowPage * -100 + "%"},1000);
+
+					$(".page").eq(nowPage).addClass("cur").siblings().removeClass("cur");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="page page0 cur">0</div>
+		<div class="page page1">
+			<img id="duocai" src="images/duocai.png" alt="">
+		</div>
+		<div class="page page2">2</div>
+		<div class="page page3">3</div>
+		<div class="page page4">4</div>
+	</div>
+</body>
+</html>

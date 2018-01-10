@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    ul {
+      list-style: none
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    div {
+      width: 1200px;
+      height: 400px;
+      margin: 50px auto;
+      border: 1px solid red;
+      overflow: hidden;
+    }
+    
+    div li {
+      width: 240px;
+      height: 400px;
+      float: left;
+    }
+    
+    div ul {
+      width: 1300px;
+    }
+  </style>
+</head>
+<body>
+<div id="box">
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<script src="animate.js"></script>
+<script>
+  //1 获取元素
+  var box = document.getElementById("box");
+  var list = box.children[0];
+  var lis = list.children;//要操作的li
+  
+  //2 给li设置图片
+  for (var i = 0; i < lis.length; i++) {
+    lis[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+    
+    //3 给每个li添加移入事件
+    lis[i].onmouseover = function () {
+      
+      //给所有人宽度运动为100
+      for (var i = 0; i < lis.length; i++) {
+        animate(lis[i], "width", 100);
+      }
+      //给自己的宽度运动为800
+      animate(this, "width", 800);
+    };
+    
+    //4 给每个li添加移出事件
+    lis[i].onmouseout = function () {
+      //给每个li设置宽度为240
+      for (var i = 0; i < lis.length; i++) {
+        animate(lis[i],"width",240);
+      }
+    }
+    
+    
+  }
+
+</script>
+</body>
+</html>

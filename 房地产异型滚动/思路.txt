@@ -1,0 +1,11 @@
+no0				waiting			waiting
+no1				no0				waiting
+no2				no1				no0
+no3				no2				no1
+no4				no3				no2
+no5				no4				no3
+no6				no5				no4
+waiting			no6				no5
+waiting			waiting			no6
+waiting			waiting			waiting
+waiting			waiting			waiting

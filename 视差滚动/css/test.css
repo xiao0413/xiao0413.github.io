@@ -1,0 +1,24 @@
+/*
+* @Author: dhl
+* @Date:   2017-10-24 11:01:20
+* @Last Modified by:   dhl
+* @Last Modified time: 2017-10-24 11:05:03
+*/
+
+body,p,ul,ol,dl,dt,dd,li,h1,h2,h3,h4,h5,h6 {
+
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	color: #999;
+}
+
+a {
+	text-decoration: none;
+	color: #999;
+}
+
+
+/* 导航开始 */

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html , body{
+			height: 100%;
+			/*让页面没有纵向滚动条*/
+			overflow-y: hidden;
+		}
+		.container{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0%;
+		}
+		.container .page{
+			width: 100%;
+			height: 100%;
+			background-color: blue;
+			position: relative;
+			-webkit-perspective:500px;
+		}
+		.container .page0{background-color: pink;}
+		.container .page1{background-color: green;}
+		.container .page2{background-color: blue;}
+		.container .page3{background-color: yellow;}
+		.container .page4{background-color: purple;}
+
+		.xiaoyuandian{
+			position: fixed;
+			right: 10px;
+			top: 50%;
+			-webkit-transform:translateY(-50%);
+			width: 20px;
+			height: 240px;
+		}
+		.xiaoyuandian ul{
+			list-style: none;
+		}
+		.xiaoyuandian ul li{
+			width: 18px;
+			height: 18px;
+			background-color: yellow;
+			margin-bottom: 10px;
+		}
+		.xiaoyuandian ul li.cur{
+			background-color: red;
+		}
+
+
+		/*1号页面的事情*/
+		.page1 img.shishi{
+			/*没有cur的状态，一种候场状态，图片在后台准备*/
+			position: absolute;
+		 	left: 200px;
+		 	top: 100px;
+		 	-webkit-transform:rotateX(-130deg) rotateY(-130deg) translateZ(800px);
+			transition:all 2s ease 0s;
+		}
+		.page1.cur img.shishi{
+			/*有cur的状态，上台！*/
+			-webkit-transform:none;
+		}
+
+		/*1号页面的事情*/
+		.page1 img.baby{
+			/*没有cur的状态，一种候场状态，图片在后台准备*/
+			position: absolute;
+		 	left: 460px;
+		 	top: 130px;
+		 	-webkit-transform:rotateX(-130deg) rotateY(-130deg) translateZ(800px);
+			transition:all 2s ease 0.8s;
+		}
+		.page1.cur img.baby{
+			/*有cur的状态，上台！*/
+			-webkit-transform:none;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jquery.mousewheel.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function(){
+				var nowpage = 0;	//信号量。 0、1、2、3、4
+
+				//滚动事件监听
+				$(document).mousewheel(
+					function(event,delta){
+						nowpage = nowpage - delta; //滚轮下滚，-1；上滚1。
+						//滞后验收
+						if(nowpage > 4){
+							nowpage = 4;
+						}
+						if(nowpage < 0){
+							nowpage = 0;
+						}
+
+						$(".container").stop(true).animate({"top":-100 * nowpage + "%"},1000);
+
+						$(".xiaoyuandian ul li").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+						$(".container .page").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+					}
+				);
+			}
+		);
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="page page0 cur">你好我是0号屏幕</div>
+		<div class="page page1">
+			你好我是1号屏幕
+			<img class="shishi" src="shishi.png" alt="" />
+			<img class="baby" src="baby.png" alt="" />
+
+		</div>
+		<div class="page page2">
+			你好我是2号屏幕
+		</div>
+		<div class="page page3">你好我是3号屏幕</div>
+		<div class="page page4">你好我是4号屏幕</div>
+	</div>
+	<div class="xiaoyuandian">
+		<ul>
+			<li class="cur"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

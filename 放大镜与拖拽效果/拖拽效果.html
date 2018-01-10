@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      height: 2000px;
+    }
+    
+    .nav {
+      height: 30px;
+      background: #036663;
+      border-bottom: 1px solid #369;
+      line-height: 30px;
+      padding-left: 30px;
+    }
+    
+    .nav a {
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      text-decoration: none;
+      
+    }
+    
+    .d-box {
+      width: 400px;
+      height: 300px;
+      border: 5px solid #eee;
+      box-shadow: 2px 2px 2px 2px #666;
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      background-color: white;
+    }
+    
+    .hd {
+      width: 100%;
+      height: 25px;
+      background-color: #7c9299;
+      border-bottom: 1px solid #369;
+      line-height: 25px;
+      color: white;
+      cursor: move;
+    }
+    
+    #box_close {
+      float: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <a href="javascript:;" id="register">注册信息</a>
+</div>
+
+<!--大盒子-->
+<div class="d-box" id="d_box">
+  <!--可以拖拽的部分-->
+  <div class="hd" id="drop">注册信息 (可以拖拽)
+    <span id="box_close">【关闭】</span>
+  </div>
+  <div class="bd"></div>
+</div>
+<script>
+  //1 获取元素
+  var box = document.getElementById("d_box");//大盒子
+  var drop = box.children[0];//要拖拽的部分
+  
+  //2 拖拽操作
+  drop.onmousedown = function (e) {
+    var e = e || window.event;
+    //点击drop时获取鼠标在盒子内的坐标
+    var x = e.clientX - box.offsetLeft;
+    var y = e.clientY - box.offsetTop;
+    
+    //3 设置移动事件，让盒子跟随移动
+    document.onmousemove = function (e) {
+      var e = e || window.event;
+      //-----如果不想让盒子移动到页面以外，需要限定left和top的最大/最小值
+      var leftVal = e.clientX - x;
+      //检测最小值
+      leftVal = leftVal < 0 ? 0 : leftVal;
+      
+      
+      box.style.left = leftVal + "px";
+      box.style.top = e.clientY - y + "px";
+    };
+    
+    return false;
+  };
+  
+  //4 鼠标按键抬起时，清除跟随效果
+  box.onmouseup = function () {
+    document.onmousemove = null;
+    return false;
+  };
+
+
+</script>
+</body>
+</html>
