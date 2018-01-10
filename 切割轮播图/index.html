@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			 margin: 0;
+			 padding: 0;
+			 list-style: none;
+		}
+
+		.box {
+			 width: 560px;
+			 height: 300px;
+			 margin: 100px auto;
+			 position: relative;
+		}
+
+		.box a {
+			 width: 30px;
+			 height: 60px;
+			 background-color: rgba(0,0,0,0.5);
+			 display: block;
+			 text-decoration: none;
+			 text-align: center;
+			 line-height: 60px;
+			 color:  #fff;
+			 position: absolute;
+			 top: 50%;
+			 transform: translateY(-50%);
+		}
+		.box .right {
+			 right: 0px;
+		}
+
+
+		ul {
+			width: 100%;
+			height: 100%;
+
+			display: flex;
+		}
+		li {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			transform-style: preserve-3d;
+		}
+
+		li span {
+			 width: 100%;
+			 height: 100%;
+			 display: block;
+			 position: absolute;
+		}
+
+		.top {
+			background: url("2.jpg") no-repeat;
+			transform: rotateX(90deg) translateZ(150px);
+		}
+
+		.bottom {
+			background: url("4.jpg") no-repeat;
+			transform: rotateX(-90deg) translateZ(150px);
+		}
+
+		.before {
+			background: url("1.jpg") no-repeat;
+			transform: translateZ(150px);
+		}
+		.back {
+		   background: url("3.jpg") no-repeat;
+		   transform: rotateX(180deg) translateZ(150px);
+		}
+
+
+		li:nth-child(2)  span {
+			background-position: -112px;
+		}
+
+		li:nth-child(3)  span {
+			background-position: -224px;
+		}
+
+		li:nth-child(4)  span {
+			background-position: -336px;
+		}
+		li:nth-child(5)  span {
+			background-position: right;
+		}
+	</style>
+</head>
+<body>
+
+		<div class="box">
+			
+			 <ul>
+			 	<li>
+			 		<span class="top"></span>
+			 		<span class="back"></span>
+			 		<span class="before"></span>
+			 		<span class="bottom"></span>
+			 	</li>
+			 	<li>
+			 		<span class="top"></span>
+			 		<span class="back"></span>
+			 		<span class="before"></span>
+			 		<span class="bottom"></span>
+			 	</li>
+			 	<li>
+			 		<span class="top"></span>
+			 		<span class="back"></span>
+			 		<span class="before"></span>
+			 		<span class="bottom"></span>
+			 	</li>
+			 	<li>
+			 		<span class="top"></span>
+			 		<span class="back"></span>
+			 		<span class="before"></span>
+			 		<span class="bottom"></span>
+			 	</li>
+			 	<li>
+			 		<span class="top"></span>
+			 		<span class="back"></span>
+			 		<span class="before"></span>
+			 		<span class="bottom"></span>
+			 	</li>
+			 </ul>
+			 <a href="#" class="left"><</a>
+			 <a href="#" class="right">></a>
+		</div>
+
+
+		<script type="text/javascript">
+			var l_a=document.querySelector(".left");
+			var r_a=document.querySelector(".right");
+			var li=document.querySelectorAll("li");
+			var n=0;
+			//点击右边的a标签			
+			r_a.onclick=function(){
+				n--;
+				for(var i=0;i<li.length;i++){
+					li[i].style.transform="rotateX("+90*n+"deg)";
+
+				    li[i].style.transition="all 1s "+0.2*i+"s linear";
+				}
+				
+			}
+			//点击右边的a标签			
+			l_a.onclick=function(){
+				n++;
+				for(var i=0;i<li.length;i++){
+					li[i].style.transform="rotateX("+90*n+"deg)";
+
+				     li[i].style.transition="all 1s "+0.2*i+"s linear";
+				}
+			}
+		</script>
+</body>
+</html>
